@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Mi Declaración de Amor Digital</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .love-app {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .app-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b9d, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .app-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .personalize-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .form-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #4ecdc4;
+        }
+        
+        .form-group {
+            margin: 20px 0;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+        
+        .start-button {
+            background: linear-gradient(45deg, #ff6b9d, #4ecdc4);
+            border: none;
+            padding: 18px 35px;
+            border-radius: 30px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+        
+        .start-button:active {
+            transform: translateY(0);
+        }
+        
+        .loading-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        
+        .loading-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b9d, #4ecdc4, #ff6b9d);
+            background-size: 200% 100%;
+            width: 0%;
+            transition: width 0.8s ease;
+            animation: shimmer 2s infinite;
+        }
+        
+        .message-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b9d;
+        }
+        
+        .message-line {
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: slideInLeft 0.6s forwards;
+        }
+        
+        .code-style {
+            font-family: 'Source Code Pro', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #4ecdc4;
+        }
+        
+        .heart-emphasis {
+            color: #ff6b9d;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(255,107,157,0.5);
+        }
+        
+        .love-reasons {
+            background: rgba(255,107,157,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .reason-item {
+            margin: 12px 0;
+            font-size: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.6s forwards;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .reason-item::before {
+            content: "💖";
+            position: absolute;
+            left: 0;
+            animation: heartbeat 2s infinite;
+        }
+        
+        .final-message {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255,107,157,0.2), rgba(78,205,196,0.2));
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 2px solid rgba(255,107,157,0.3);
+        }
+        
+        .final-question {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 20px 0;
+            color: #ff6b9d;
+        }
+        
+        .signature {
+            font-style: italic;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        @keyframes floatUp {
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .floating-heart {
+            position: absolute;
+            animation: floatUp 4s linear forwards;
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .love-app {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <div class="love-app">
+            <div class="app-header">
+                <h1 class="app-title">💖 Mi Corazón Tiene Algo Que Decirte</h1>
+                <p class="app-subtitle">Una declaración de amor creada especialmente para ti</p>
+            </div>
+            
+            <div class="personalize-form" id="personalizationForm">
+                <h3 class="form-title">🌹 Una Declaración Especial</h3>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9;">
+                    Este mensaje ha sido creado con amor especialmente para ti
+                </p>
+                <button class="start-button" onclick="iniciarDeclaracion()">
+                    💕 Ver Mi Declaración de Amor
+                </button>
+            </div>
+            
+            <div id="output" class="hidden">
+                <div class="loading-section" id="loadingSection">
+                    <div class="loading-text" id="loadingText">Preparando tu mensaje de amor...</div>
+                    <div class="loading-bar">
+                        <div class="loading-progress" id="loadingProgress"></div>
+                    </div>
+                </div>
+                <div id="messageOutput"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let miNombre = "";
+        let suNombre = "";
+        let currentMessage = 0;
+        
+        const loadingMessages = [
+            "💖 Organizando mis sentimientos...",
+            "🌹 Eligiendo las palabras perfectas...",
+            "✨ Añadiendo un toque de magia...",
+            "💕 Preparando tu mensaje especial...",
+            "🎯 Listo para enamorarte..."
+        ];
+        
+        const loveMessages = [
+            {
+                type: 'header',
+                content: `
+                    <div style="text-align: center; margin: 30px 0;">
+                        <h2 style="font-size: 2rem; margin-bottom: 10px;">Para: <span class="heart-emphasis">{suNombre}</span> 💖</h2>
+                        <h3 style="font-size: 1.2rem; opacity: 0.9;">De: <span style="color: #4ecdc4;">{miNombre}</span></h3>
+                    </div>
+                `
+            },
+            {
+                type: 'message',
+                content: `Querida <span class="heart-emphasis">{suNombre}</span>,`
+            },
+            {
+                type: 'message',
+                content: `He estado pensando en la mejor manera de decirte lo que siento, y decidí crear algo especial solo para ti.`
+            },
+            {
+                type: 'message',
+                content: `Como cuando escribes un programa de computadora, yo he "<span class="code-style">programado</span>" mi corazón para amarte de una manera muy especial.`
+            },
+            {
+                type: 'message',
+                content: `Mi corazón funciona así:`
+            },
+            {
+                type: 'code',
+                content: `
+                    <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; margin: 20px 0; font-family: 'Source Code Pro', monospace;">
+                        <div style="color: #4ecdc4;">ESTADO DE MI CORAZÓN:</div>
+                        <div style="margin: 10px 0;">❤️ Enamorado = <span style="color: #ff6b9d;">SÍ</span></div>
+                        <div style="margin: 10px 0;">💓 Latidos por minuto = <span style="color: #ff6b9d;">120</span> (cuando te veo)</div>
+                        <div style="margin: 10px 0;">😍 Felicidad = <span style="color: #ff6b9d;">Máxima</span></div>
+                    </div>
+                `
+            },
+            {
+                type: 'message',
+                content: `Después de analizar todos mis sentimientos, encontré que la función más importante en mi vida es <span class="heart-emphasis">amarte()</span>.`
+            },
+            {
+                type: 'reasons',
+                content: `
+                    <div class="love-reasons">
+                        <h3 style="text-align: center; margin-bottom: 20px; color: #ff6b9d;">💕 Las razones por las que te amo:</h3>
+                        <div class="reason-item">Tu sonrisa ilumina mis días como la luz del sol</div>
+                        <div class="reason-item">Eres la solución perfecta a todos mis problemas del corazón</div>
+                        <div class="reason-item">Contigo, mi vida tiene el nivel perfecto de felicidad: ∞ (infinito)</div>
+                        <div class="reason-item">Eres mi constante en un mundo que siempre cambia</div>
+                        <div class="reason-item">Tu belleza nunca se borra de mi memoria</div>
+                        <div class="reason-item">Eres la respuesta que siempre da "SÍ" a mis sueños</div>
+                        <div class="reason-item">Contigo, mi mente se llena solo de pensamientos hermosos</div>
+                    </div>
+                `
+            },
+            {
+                type: 'message',
+                content: `Mi corazón funciona con esta lógica simple:`
+            },
+            {
+                type: 'code',
+                content: `
+                    <div style="background: rgba(0,0,0,0.4); padding: 20px; border-radius: 10px; margin: 20px 0; font-family: 'Source Code Pro', monospace; line-height: 1.8;">
+                        <div style="color: #4ecdc4;">SI tu respuesta es "Sí" ENTONCES:</div>
+                        <div style="margin-left: 20px; color: #fff;">📍 Construiremos nuestro futuro juntos</div>
+                        <div style="margin-left: 20px; color: #fff;">📍 Te amaré cada día de mi vida</div>
+                        <div style="margin-left: 20px; color: #fff;">📍 Te haré feliz siempre</div>
+                        <div style="margin-left: 20px; color: #fff;">📍 Crearemos recuerdos hermosos</div>
+                        <div style="color: #4ecdc4; margin-top: 15px;">SI NO:</div>
+                        <div style="margin-left: 20px; color: #fff;">⏳ Esperaré pacientemente hasta que tu corazón entienda mis sentimientos</div>
+                    </div>
+                `
+            },
+            {
+                type: 'final',
+                content: `
+                    <div class="final-message">
+                        <h3 style="color: #4ecdc4; margin-bottom: 20px;">💎 Mi Promesa Para Ti:</h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6;">
+                            Prometo amarte en cada momento de mi vida,<br>
+                            sin errores, sin fallas, solo amor puro y verdadero.<br>
+                            Serás mi prioridad número uno, siempre.
+                        </p>
+                        <div class="final-question">
+                            ¿Quieres ser mi compañera de vida para siempre? 💕
+                        </div>
+                        <div class="signature">
+                            Con todo mi amor (y cero dudas),<br>
+                            <span class="heart-emphasis">{miNombre}</span> 💖
+                        </div>
+                    </div>
+                `
+            },
+            {
+                type: 'success',
+                content: `
+                    <div style="text-align: center; margin: 30px 0; padding: 25px; background: rgba(40, 200, 64, 0.2); border-radius: 15px; border: 2px solid #28ca42;">
+                        <div style="font-size: 1.3rem; color: #28ca42; margin-bottom: 15px;">✅ Mensaje de amor enviado exitosamente</div>
+                        <div style="font-size: 1.1rem;">💌 Esperando la respuesta de tu corazón...</div>
+                        <div style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">Con amor infinito y esperanza eterna ❤️</div>
+                    </div>
+                `
+            }
+        ];
+        
+        function iniciarDeclaracion() {
+            miNombre = "Bryan";
+            suNombre = "Cristina";
+            
+            document.getElementById('personalizationForm').classList.add('hidden');
+            document.getElementById('output').classList.remove('hidden');
+            
+            // Iniciar corazones flotantes
+            startFloatingHearts();
+            
+            // Mostrar mensajes de carga
+            showLoadingMessages();
+        }
+        
+        function showLoadingMessages() {
+            let messageIndex = 0;
+            const loadingTextElement = document.getElementById('loadingText');
+            
+            const messageInterval = setInterval(() => {
+                if (messageIndex < loadingMessages.length) {
+                    loadingTextElement.textContent = loadingMessages[messageIndex];
+                    messageIndex++;
+                } else {
+                    clearInterval(messageInterval);
+                }
+            }, 1000);
+            
+            // Animación de progreso
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 1.5;
+                document.getElementById('loadingProgress').style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        document.getElementById('loadingSection').style.display = 'none';
+                        startLoveDeclaration();
+                    }, 1000);
+                }
+            }, 80);
+        }
+        
+        function startLoveDeclaration() {
+            const outputDiv = document.getElementById('messageOutput');
+            currentMessage = 0;
+            
+            function showNextMessage() {
+                if (currentMessage < loveMessages.length) {
+                    const message = loveMessages[currentMessage];
+                    let content = message.content
+                        .replace(/{miNombre}/g, miNombre)
+                        .replace(/{suNombre}/g, suNombre);
+                    
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message-container';
+                    messageDiv.innerHTML = content;
+                    
+                    outputDiv.appendChild(messageDiv);
+                    
+                    // Animar elementos internos
+                    const elements = messageDiv.querySelectorAll('.message-line, .reason-item');
+                    elements.forEach((el, index) => {
+                        el.style.animationDelay = (index * 0.2) + 's';
+                    });
+                    
+                    // Auto scroll
+                    messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    currentMessage++;
+                    
+                    // Diferentes tiempos según el tipo de mensaje
+                    let delay = 2500;
+                    if (message.type === 'reasons') delay = 4000;
+                    if (message.type === 'final') delay = 3500;
+                    if (message.type === 'code') delay = 3000;
+                    
+                    setTimeout(showNextMessage, delay);
+                }
+            }
+            
+            showNextMessage();
+        }
+        
+        function startFloatingHearts() {
+            const heartsContainer = document.getElementById('floatingHearts');
+            
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.innerHTML = ['💖', '💕', '💗', '💘', '❤️'][Math.floor(Math.random() * 5)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                heartsContainer.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+            
+            // Crear corazones cada 2 segundos
+            setInterval(createHeart, 2000);
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+ 
